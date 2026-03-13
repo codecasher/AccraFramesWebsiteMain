@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>frame 3198</title>
+  <link rel="stylesheet" href="../frame1.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=sans+serif+One&family=Life+Savers:wght@400;700;800&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+   .navbar {
+  width: 100%;
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20; 
+  color: black;
+  margin-top: 2em;
+  margin-bottom: 3em;
+ 
+}
+
+.navbar .logo a {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin-right: 10em;
+  padding: 0;
+}
+
+.navigation ul li {
+  color: black;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navigation ul li:hover {
+  color: #ffd700; 
+}
+    /* Sidebar */
+    .sidebar {
+      width: auto;
+      height: 100vh;
+      background: white;
+      color: black;
+      padding: 1rem;
+      position: fixed;
+      left: 0;
+      top: 0px;
+      transition: transform 0.3s ease;
+      z-index: 1500;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    /* Main Content */
+    .content {
+      margin-left: 200px;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      font-size: 1rem;
+      background: #202123;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 50%;
+      z-index: 2000;
+      cursor: pointer;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    /* ===== MOBILE VIEW ===== */
+    @media (max-width: 760px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 4rem;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+<div class="navigation">
+  <!-- Hamburger Button -->
+  <button class="hamburger" id="hamburger">☰</button>
+  
+</div>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="first-container">
+     <aside class="filter-sidebar">
+        <h2 class="filter-title">My Filter System</h2>
+        <hr class="title-hr">
+        
+        <div class="accordion">
+            <!-- Frame Size -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="size">
+                    <span>Frame Size</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="accordion-content" id="size">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-size" value="16 x 24" data-price="2000" data-group="sizes" data-wholesale="1800"> 16 x 24</p>
+                        </label>
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-size" value="12 x 16" data-price="700" data-group="sizes" data-wholesale="600"> 12 x 16 </p>
+                        </label>
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-size" value="11 x 14" data-price="600" data-wholesale="550"> 11 x 14 </p>
+                        </label>
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-size" value="10 x 14" data-price="500" data-wholesale="400"> 10 x 14 </p>
+                        </label>
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-size" value="10 x 12" data-price="450" data-wholesale="380"> 10 x 12 </p>
+                        </label>
+                        <label class="checkbox-label">
+                             <p><input type="checkbox" class="frame-size" value="6 x 8" data-price="250" data-wholesale="200"> 6 x 8 </p>
+                        </label>
+                         <label class="checkbox-label">
+                             <p><input type="checkbox" class="frame-size" value="A4" data-price="350" data-wholesale="280"> A4</p>
+                        </label>
+                        <label class="checkbox-label">
+                             <p><input type="checkbox" class="frame-size" value="5 x 7" data-price="200" data-wholesale="180"> 5 x 7 </p>
+                        </label>
+                        <label class="checkbox-label">
+                             <p><input type="checkbox" class="frame-size" value="4 x 6" data-price="180" data-wholesale="150"> 4 x 6 </p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Quantity (Bulk) -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="quantity">
+                    <span>Quantity (Bulk)</span>
+                    <svg class="chevron" width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="quantity">
+                    <div class="checkbox-group">
+                      <label class="checkbox-label">
+                            <span><I>Check cart for items less than 5</I></span>
+                            </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="5 pieces" data-group="quantities">
+                            <span>5 pieces</span>
+                            </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="1-10 pieces" data-group="quantities">
+                            <span>6 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="11-50 pieces" data-group="quantities">
+                            <span>10 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="51-100 pieces" data-group="quantities">
+                            <span>20 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>40 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>50 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>100+ pieces</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="color">
+                    <span>Color</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="color">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-color" value="Black"></p> 
+                            <span>Black</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <p><input type="checkbox" class="frame-color" value="Gold"></p>
+                            <span>Gold</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Material -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="material">
+                    <span>Material</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="material">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Wood" data-group="materials">
+                            <span>Wood</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finish -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="finish">
+                    <span>Finish</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="finish">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Matte" data-group="finishes">
+                            <span>Matte</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Glossy" data-group="finishes">
+                            <span>Glossy</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Distressed" data-group="finishes">
+                            <span>Distressed</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Rustic" data-group="finishes">
+                            <span>Antiqued</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+  <script>
+      const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    hamburger.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+    </script>
+  <!-- Main Content -->
+  <main class="content">
+        <div class="navbar-logo">
+    <div class="logo"><a href="/index.html"><img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1773320851/Logo_fesi86.png" alt="logo" loading="eager"></a></div>
+    <div class="navigation-logo">
+      <ul>
+        <a href="/collections.html"><li class="li">Collections</li></a>
+        <li class="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-count-badge">0</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+   <div class="product-page">
+    <!-- ===== FILTER SIDEBAR ===== -->
+    <!-- ===== IMAGE SLIDER ===== -->
+    <div class="second-container">
+      <button class="btn prev">&#10094;</button>
+      <div class="slider">
+        <div class="slides">
+          <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435447/pictureframes3198.2_m7iqrj.png" class="slide active" alt="frame 1" loading="eager">
+          <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435439/pictureframe3198.3_bedygu.png" class="slide" alt="frame 2" loading="lazy">
+        </div>
+      </div>
+      <button class="btn next">&#10095;</button>
+    </div>
+
+    <!-- ===== PRODUCT DETAILS ===== -->
+    <div class="third-container">
+      <h1 id="frameType"></h1>
+      <hr class="third-container-hr">
+      <p>Slim ornate wood picture frame</p>
+
+      <div class="description">
+        <p class="descri-header" id="frameSize"><b>Frame-size:</b> 5 x 7</p>
+        <p class="descri-header" id="frameColor"><b>Colour:</b> black</p>
+        <p class="descri-header" id="Color-code"><b>Colour-code:</b></p>
+        <p class="descri-header"><b>Material:</b> Wood</p>
+        <p class="descri-header"><b>Finish:</b> Satin</p>
+      </div>
+
+      <div class="Price" id="price">Ksh 350/=</div>
+
+      <div class="description-btn">
+        <p class="buyNow" id="buyNow"><i class="fa-brands fa-whatsapp">&nbsp;&nbsp;</i>Order via Whatsapp</p>
+        <p class="add-to-cart">Add to cart!</p>
+
+        <!-- CART SIDEBAR -->
+        <div class="cart">
+          <div class="cart-header">
+            <h2>Your Cart</h2>
+            <i class="fa-solid fa-xmark" id="cart-close"></i>
+          </div>
+          <div class="cart-content"></div>
+          <div class="cart-footer">
+            <p>Total: <span class="total-price">Ksh 0</span></p>
+            <a href="../mpesa-payment.html"><button id="checkout-btn">Checkout</button></a>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </div>
+
+      <hr class="description-hr">
+
+      <div class="description-icons">
+        <div><i class="fa-solid fa-trophy"></i><p>Over 50 years <br>experience</p></div>
+        <div><i class="fa-solid fa-hand-holding-heart"></i><p>Expertly Crafted</p></div>
+        <div><i class="fa-solid fa-circle-check"></i><p>Enthusiastically <br>Guaranteed</p></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- ===== DELIVERY & REVIEW SECTIONS ===== -->
+  <div class="sections-container">
+    <section class="delivery-section">
+      <h2 class="section-title">Delivery Information</h2>
+      <p class="section-subtitle">We currently deliver only within Nairobi CBD</p>
+
+      <form id="deliveryForm" class="form-container">
+        <div class="form-group">
+          <label for="deliveryName">Full Name</label>
+          <input type="text" id="deliveryName" placeholder="Enter your full name" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryPhone">Phone Number</label>
+          <input type="tel" id="deliveryPhone" placeholder="0700000000" pattern="[0-9]{10}" maxlength="10">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryAddress">Delivery Address (Nairobi CBD Only)</label>
+          <textarea id="deliveryAddress" placeholder="Enter your delivery address within Nairobi CBD" maxlength="500"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Delivery Request</button>
+      </form>
+    </section>
+    <!-- ===== Review Section ===== -->
+<section class="review-section">
+  <h2 class="section-title">Customer Reviews</h2>
+  <p class="section-subtitle">Only verified purchasers can leave reviews</p>
+
+  <form id="reviewForm" class="form-container review-form">
+    <div class="form-group">
+      <label for="reviewerName">Your Name</label>
+      <input type="text" id="reviewerName" placeholder="Enter your name" required maxlength="100">
+    </div>
+
+    <div class="form-group">
+      <label>Rating</label>
+      <div class="star-rating" id="starRating">
+        <span class="star" data-rating="1">★</span>
+        <span class="star" data-rating="2">★</span>
+        <span class="star" data-rating="3">★</span>
+        <span class="star" data-rating="4">★</span>
+        <span class="star" data-rating="5">★</span>
+      </div>
+      <input type="hidden" id="ratingValue" value="0" required>
+    </div>
+
+    <div class="form-group">
+      <label for="reviewText">Your Review</label>
+      <textarea id="reviewText" placeholder="Share your experience with this product" required maxlength="1000"></textarea>
+    </div>
+
+    <div class="form-warning">
+      <i class="fa-solid fa-shield-check"></i>
+      <p><strong>Verified Purchase Required:</strong> Your review will be verified against our purchase records. Only customers who have purchased this product can submit reviews.</p>
+    </div>
+
+    <button type="submit" class="submit-btn" id="reviewSubmitBtn" disabled>Submit Review</button>
+  </form>
+
+  <!-- Success Message -->
+  <div id="reviewSuccess" class="success-message" style="display: none;">
+    <div class="success-icon">✓</div>
+    <h3>Review Submitted Successfully!</h3>
+    <p>Thank you for your feedback! We are verifying your purchase. Your review will be published once confirmed. This usually takes 24–48 hours.</p>
+    <button onclick="resetReviewForm()" class="reset-btn">Submit Another Review</button>
+  </div>
+</section>
+
+  </div>
+<div class="other-related-items">
+  <h4 style="font-size: 20px; font-weight: bolder;">Other Related Items</h4>
+  <div class="other-related-items">
+    <div class="frame-container">
+      <a href="3096.html">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435311/3096_hlzdm0.png alt="item-2" loading="lazy">
+          <h4>3096</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3096</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </div>
+          </a>
+        </div>
+           <div class="frame-container">
+            <a href="3128.html">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435372/3128.3-1_zqcbda.png alt="item3" loading="lazy">
+          <h4> 3128</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3128.3</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </div>
+          </a>
+        </div>
+           <div class="frame-container">
+            <a href="3010.html">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435227/3010.4-1_vuvhf1.png alt="frame-four" loading="lazy">
+          <h4>3010</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3010.4</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </div>
+          </a>
+        </div>
+         <div class="frame-container">
+          <a href="3135.html">
+         <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435354/3135.2_iu2tb2.png alt="frame-two" loading="lazy">
+          <h4>3135</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3135.2</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </div>
+          </a>
+        </div>
+      </div>
+</div>
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <hr style="margin-top: 10em;">
+    <i class="fa-regular fa-copyright"></i>
+    <p>2025 Soleflex Stores. All Rights Reserved. Built by Derrick.G.Maina. <br>TEL: 0798702143</p>
+  </div>
+
+  <!-- ===== SLIDER SCRIPT ===== -->
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+    let index = 0;
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[n].classList.add("active");
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+
+    const toggleBtn = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".first-container");
+        toggleBtn.addEventListener("click", ()=> {
+            navLinks.classList.toggle("active");
+            toggleBtn.textContent = navLinks.classList.contains("active")?"x" : "=";
+        });
+
+
+  </script>
+  <script>
+  const COLOR_CODE_PREFIX = "3198";
+</script>
+  <script src="../prototype.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // --- Helpers ---
+  const qs = sel => document.querySelector(sel);
+  const qsa = sel => Array.from(document.querySelectorAll(sel));
+
+  // --- Elements ---
+  const colorCheckboxes = qsa(".frame-color");
+  const colorDisplay = qs("#frameColor");
+  const colorCodeDisplay = qs("#Color-code");
+
+  // --- Colour Code Mapping ---
+ 
+
+  const colorCodes = {
+    Black: ".2",
+    Gold: ".3",
+  };
+ 
+  // --- Default Colour ---
+  const defaultColor = "Black";
+  const defaultCheckbox = colorCheckboxes.find(
+    cb => cb.value.toLowerCase() === defaultColor.toLowerCase()
+  );
+
+  if (defaultCheckbox) defaultCheckbox.checked = true;
+
+  if (colorDisplay) {
+    colorDisplay.innerHTML = `<b>Colour:</b> ${defaultColor}`;
+  }
+
+  if (colorCodeDisplay) {
+    colorCodeDisplay.innerHTML =
+      `<b>Colour-code:</b> ${COLOR_CODE_PREFIX}${colorCodes[defaultColor]}`;
+  }
+
+  const frameTypeDisplay = qs("#frameType");
+
+// Set the frame type to the color code prefix + default (or any custom value)
+if (frameTypeDisplay) {
+  frameTypeDisplay.textContent = COLOR_CODE_PREFIX;
+}
+
+// Optional: if you want it to update with color selection
+colorCheckboxes.forEach(cb => {
+  cb.addEventListener("change", function () {
+    if (!this.checked) return;
+
+    const color = this.value;
+    const code = colorCodes[color] || "";
+
+    // Update frame type too
+    if (frameTypeDisplay) {
+      frameTypeDisplay.textContent = COLOR_CODE_PREFIX + code;
+    }
+  });
+});
+
+
+  // --- Handle Colour Change ---
+  colorCheckboxes.forEach(cb => {
+    cb.addEventListener("change", function () {
+      // Allow only one colour checked
+      colorCheckboxes.forEach(other => {
+        if (other !== this) other.checked = false;
+      });
+
+      if (!this.checked) return;
+
+      const color = this.value;
+      const code = colorCodes[color] || "";
+
+      if (colorDisplay) {
+        colorDisplay.innerHTML = `<b>Colour:</b> ${color}`;
+      }
+
+      if (colorCodeDisplay) {
+        colorCodeDisplay.innerHTML =
+          `<b>Colour-code:</b> ${COLOR_CODE_PREFIX}${code}`;
+      }
+    });
+  });
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Zilla Slab", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
+
+.logo {
+  flex: 0 0 30%;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.navigation {
+  flex: 0 0 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-hamburger {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.searchBar button {
+  padding: 10px 12px;
+  cursor: pointer;
+  border: 2px solid #ffd700;
+  background: white;
+  color: white;
+  border-radius: 50%;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 7em;
+}
+
+.header h5 {
+  color: rgba(238, 152, 22, 0.664);
+}
+
+.header-title {
+  font-size: 50px;
+  margin-bottom: 2px;
+}
+
+hr {
+  width: 200px;
+  justify-content: center;
+  align-self: center;
+  margin: auto;
+  margin-bottom: 5px;
+  border: 2px solid #ffd700;
+}
+
+/* ===================== FILTER BUTTONS ===================== */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.buttons p {
+  padding: 10px;
+  border: solid black;
+}
+
+.buttons p:hover {
+  background-color: #f3f70a;
+  transition: ease-in 0.5s;
+  cursor: pointer;
+}
+
+/* ===================== FRAME GRID ===================== */
+.frame {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2%, 1rem);
+  padding: 0.75rem;
+  width: 100%;
+  margin-left: -10px;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+.box {
+  flex: 1 1 clamp(120px, 45%, 160px);
+  height: 432px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 25px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 5%;
+}
+
+.box:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  transition: 1s;
+}
+
+.box img {
+  height: 60%;
+  width: 67%;
+  object-fit: cover;
+  background-color: whitesmoke;
+  border-radius: 5%;
+  margin-top: -0.5em !important;
+  margin-bottom: 1em;
+  padding: 0 1em;
+}
+
+.box a {
+  text-decoration: none;
+  color: black;
+}
+
+.frame-container h4 {
+  text-align: center;
+  margin-bottom: -5px;
+  font-size: 20px;
+}
+
+.frame-container .price {
+  text-align: center;
+  font-weight: bold;
+  color: rgba(134, 60, 10, 0.829);
+}
+
+.price-cart {
+  margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 1.5em;
+  gap: 6em;
+}
+
+.fa-solid {
+  color: rgba(134, 60, 10, 0.829);
+}
+
+.frame-hr {
+  opacity: 0;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 5px;
+  border: 2px solid #ffd700;
+  transition: opacity 1s ease;
+  margin-top: 5px;
+}
+
+.frame-container:hover .frame-hr {
+  opacity: 1;
+}
+
+/* ===================== MOBILE: 320px - 480px ===================== */
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-bottom: 3%;
+  }
+
+  .logo {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  .logo a {
+    font-size: 1.3rem;
+  }
+
+  .navigation {
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+
+  .searchBar input {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .searchBar button {
+    padding: 8px 10px;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 3em;
+  }
+
+  .header-title {
+    font-size: 28px;
+  }
+
+  .header h5 {
+    font-size: 13px;
+  }
+
+  hr {
+    width: 120px;
+  }
+
+  /* Filter Buttons */
+  .buttons {
+    gap: 0.6em;
+    padding: 0 10px;
+  }
+
+  .buttons p {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-width: 1px;
+  }
+
+  /* Frame Grid — single column below 380px, two columns above */
+  .frame {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    margin-left: 0;
+    background-color: white;
+  }
+
+  .box {
+    height: auto;
+    min-height: 280px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    flex: none;
+  }
+
+  .box:hover {
+    transform: scale(1.03);
+  }
+
+  .box img {
+    height: auto;
+    width: 75%;
+    margin-top: 0.5em !important;
+  }
+
+  .frame-container h4 {
+    font-size: 16px;
+  }
+
+  .frame-container .price {
+    font-size: 14px;
+  }
+
+  .price-cart {
+    margin-left: 0;
+    justify-content: center;
+    gap: 2em;
+  }
+
+  .frame-hr {
+    width: 60px;
+  }
+}
+
+/* Two-column grid for wider phones (380px - 480px) */
+@media (min-width: 380px) and (max-width: 480px) {
+  .frame {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===================== TABLET: 481px - 768px ===================== */
+@media (max-width: 768px) and (min-width: 481px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logo,
+  .navigation {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  .navigation {
+    justify-content: center;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+
+  .header-title {
+    font-size: 38px;
+  }
+
+  .header {
+    margin-bottom: 4em;
+  }
+
+  .frame {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+    margin-left: 0;
+  }
+
+  .box {
+    height: auto;
+    min-height: 320px;
+    flex: none;
+  }
+}
+
+/* ===================== DESKTOP: 1024px+ ===================== */
+@media (min-width: 1024px) {
+  .frame {
+    justify-content: space-around;
+    margin-left: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    flex: 0 0 calc(25% - 6rem);
+    height: 432px;
+  }
+}
+
+/* ===================== LARGE DESKTOP: 1800px+ ===================== */
+@media (min-width: 1800px) {
+  .frame {
+    justify-content: space-around;
+    margin-left: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    flex: 0 0 calc(25% - 30px);
+    height: 500px;
+  }
+
+  .box img {
+    padding: 2em;
+    height: 40%;
+    width: 40%;
+  }
+}
