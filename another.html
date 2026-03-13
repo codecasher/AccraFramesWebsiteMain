@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  flex: 0 0 30%;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.navigation {
+  flex: 0 0 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.search-hamburger {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.searchBar button {
+  padding: 10px 12px;
+  cursor: pointer;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 4px;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logo,
+  .navigation {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  .navigation {
+    justify-content: center;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+  <div class="logo">
+    <a href="#">AcraFrames</a>
+  </div>
+
+  <div class="navigation">
+    <div class="search-hamburger">
+      <div class="searchBar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for frame numbers (e.g., 1019)..."
+          list="Listproducts"
+        />
+        <datalist id="Listproducts"></datalist>
+        <button id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Sidebar Menu</title>
+  <link rel="stylesheet" href="../../frame1.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=sans+serif+One&family=Life+Savers:wght@400;700;800&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+   .navbar {
+  width: 100%;
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20; 
+  color: black;
+  margin-top: 2em;
+  margin-bottom: 3em;
+ 
+}
+
+.navbar .logo a {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin-right: 10em;
+  padding: 0;
+}
+
+.navigation ul li {
+  color: black;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navigation ul li:hover {
+  color: #ffd700; 
+}
+    /* Sidebar */
+    .sidebar {
+      width: auto;
+      height: 100vh;
+      background: white;
+      color: black;
+      padding: 1rem;
+      position: fixed;
+      left: 0;
+      top: 0px;
+      transition: transform 0.3s ease;
+      z-index: 1500;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    /* Main Content */
+    .content {
+      margin-left: 200px;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      font-size: 1rem;
+      background: #202123;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 50%;
+      z-index: 2000;
+      cursor: pointer;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    /* ===== MOBILE VIEW ===== */
+    @media (max-width: 760px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 4rem;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+<div class="navigation">
+  <!-- Hamburger Button -->
+  <button class="hamburger" id="hamburger">☰</button>
+  
+</div>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="first-container">
+     <aside class="filter-sidebar">
+        <h2 class="filter-title">My Filter System</h2>
+        <hr class="title-hr">
+        
+        <div class="accordion">
+            <!-- Frame Size -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="size">
+                    <span>Frame Size</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="accordion-content" id="size">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                             <p><input type="checkbox" class="frame-size" value="A3" data-price="420" data-wholesale="420" checked> A3</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Quantity (Bulk) -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="quantity">
+                    <span>Quantity (Bulk)</span>
+                    <svg class="chevron" width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="quantity">
+                    <div class="checkbox-group">
+                      <label class="checkbox-label">
+                            <span><I>Check cart for items less than 5</I></span>
+                            </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="5 pieces" data-group="quantities">
+                            <span>5 pieces</span>
+                            </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="1-10 pieces" data-group="quantities">
+                            <span>6 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="11-50 pieces" data-group="quantities">
+                            <span>10 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="51-100 pieces" data-group="quantities">
+                            <span>20 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>40 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>50 pieces</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="100+ pieces" data-group="quantities">
+                            <span>100+ pieces</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color -->
+
+
+            <!-- Material -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" data-target="material">
+                    <span>Material</span>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="accordion-content" id="material">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" value="Wood" data-group="materials">
+                            <span>photopaper</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finish -->
+        </div>
+    </aside>
+</div>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+  <script>
+      const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    hamburger.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+    </script>
+  <!-- Main Content -->
+  <main class="content">
+        <div class="navbar-logo">
+    <div class="logo"><a href="#">FrameMuse</a></div>
+    <div class="navigation-logo">
+      <ul>
+        <li class="li">Collections</li>
+        <li class="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-count-badge">0</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product-page">
+    <!-- ===== FILTER SIDEBAR ===== -->
+    <!-- ===== IMAGE SLIDER ===== -->
+    <div class="second-container">
+      <button class="btn prev">&#10094;</button>
+      <div class="slider">
+        <div class="slides">
+          <img src="../collection-images/photopaper-images/Embossed paper 230gsm.png" class="slide active" alt="frame-two">
+         <img src="../../collection-options/glassframe-images/glassframeblack.png" class="slide" alt="frame-two">
+          <img src="../../collection-options/glassframe-images/glassframeblack.png" class="slide" alt="frame-two">
+        </div>
+      </div>
+      <button class="btn next">&#10095;</button>
+    </div>
+
+    <!-- ===== PRODUCT DETAILS ===== -->
+    <div class="third-container">
+      <h1 id="frameType"></h1>
+      <hr class="third-container-hr">
+      <p>Slim ornate Glass picture frame</p>
+
+      <div class="description">
+        <p class="descri-header" id="frameSize"><b>Frame-size:</b></p>
+        <p class="descri-header" id="frameColor"><b>Colour:</b> blue</p>
+        <p class="descri-header"><b>Material:</b> Glass</p>
+      </div>
+
+      <div class="Price" id="price">Ksh 350/=</div>
+
+      <div class="description-btn">
+        <p class="buyNow" id="BuyNow"><i class="fa-brands fa-whatsapp">&nbsp;&nbsp;</i>Order via Whatsapp</p>
+        <p class="add-to-cart">Add to cart!</p>
+
+        <!-- CART SIDEBAR -->
+        <div class="cart">
+          <div class="cart-header">
+            <h2>Your Cart</h2>
+            <i class="fa-solid fa-xmark" id="cart-close"></i>
+          </div>
+          <div class="cart-content"></div>
+          <div class="cart-footer">
+            <p>Total: <span class="total-price">Ksh 0</span></p>
+            <a href="../mpesa-payment.html"><button id="checkout-btn">Checkout</button></a>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </div>
+
+      <hr class="description-hr">
+
+      <div class="description-icons">
+        <div><i class="fa-solid fa-trophy"></i><p>Over 50 years <br>experience</p></div>
+        <div><i class="fa-solid fa-hand-holding-heart"></i><p>Expertly Crafted</p></div>
+        <div><i class="fa-solid fa-circle-check"></i><p>Enthusiastically <br>Guaranteed</p></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- ===== DELIVERY & REVIEW SECTIONS ===== -->
+  <div class="sections-container">
+    <section class="delivery-section">
+      <h2 class="section-title">Delivery Information</h2>
+      <p class="section-subtitle">We currently deliver only within Nairobi CBD</p>
+
+      <form id="deliveryForm" class="form-container">
+        <div class="form-group">
+          <label for="deliveryName">Full Name</label>
+          <input type="text" id="deliveryName" placeholder="Enter your full name" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryPhone">Phone Number</label>
+          <input type="tel" id="deliveryPhone" placeholder="0700000000" pattern="[0-9]{10}" maxlength="10">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryAddress">Delivery Address (Nairobi CBD Only)</label>
+          <textarea id="deliveryAddress" placeholder="Enter your delivery address within Nairobi CBD" maxlength="500"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Delivery Request</button>
+      </form>
+    </section>
+    <!-- ===== Review Section ===== -->
+<section class="review-section">
+  <h2 class="section-title">Customer Reviews</h2>
+  <p class="section-subtitle">Only verified purchasers can leave reviews</p>
+
+  <form id="reviewForm" class="form-container review-form">
+    <div class="form-group">
+      <label for="reviewerName">Your Name</label>
+      <input type="text" id="reviewerName" placeholder="Enter your name" required maxlength="100">
+    </div>
+
+    <div class="form-group">
+      <label>Rating</label>
+      <div class="star-rating" id="starRating">
+        <span class="star" data-rating="1">★</span>
+        <span class="star" data-rating="2">★</span>
+        <span class="star" data-rating="3">★</span>
+        <span class="star" data-rating="4">★</span>
+        <span class="star" data-rating="5">★</span>
+      </div>
+      <input type="hidden" id="ratingValue" value="0" required>
+    </div>
+
+    <div class="form-group">
+      <label for="reviewText">Your Review</label>
+      <textarea id="reviewText" placeholder="Share your experience with this product" required maxlength="1000"></textarea>
+    </div>
+
+    <div class="form-warning">
+      <i class="fa-solid fa-shield-check"></i>
+      <p><strong>Verified Purchase Required:</strong> Your review will be verified against our purchase records. Only customers who have purchased this product can submit reviews.</p>
+    </div>
+
+    <button type="submit" class="submit-btn" id="reviewSubmitBtn" disabled>Submit Review</button>
+  </form>
+
+  <!-- Success Message -->
+  <div id="reviewSuccess" class="success-message" style="display: none;">
+    <div class="success-icon">✓</div>
+    <h3>Review Submitted Successfully!</h3>
+    <p>Thank you for your feedback! We are verifying your purchase. Your review will be published once confirmed. This usually takes 24–48 hours.</p>
+    <button onclick="resetReviewForm()" class="reset-btn">Submit Another Review</button>
+  </div>
+</section>
+
+  </div>
+<div class="other-related-items">
+  <h4 style="font-size: 20px; font-weight: bolder;">Other Related Items</h4>
+  <div class="other-related-items">
+    <div class="frame-container">
+          <a href="stickerpaper-135gsm.html"><img src="../collection-images/photopaper-images/skicker paper 135gsm.png" alt="frame-two">
+          <h4>Sticker Paper 135gsm</h4>
+          <hr class="frame-hr">
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </a>
+          </div>
+        </div>
+           <div class="frame-container">
+            <a href="mattepaper-115gsm.html">
+          <img src="../collection-images/photopaper-images/Matte paper 115gsm refined.png" alt="frame-two">
+          <h4> Mattle Paper 115gsm refined</h4>
+          <hr class="frame-hr">
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </a>
+          </div>
+        </div>
+           <div class="frame-container">
+            <a href="photopaper-260gsm.html">
+          <img src="../collection-images/photopaper-images/photo paperA4 230gsm.png" alt="frame-two">
+          <h4>Photo paper A4</h4>
+          <hr class="frame-hr">
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </a>
+          </div>
+        </div>
+         <div class="frame-container">
+          <a href="Rc(waterproof)A6-270.html">
+         <img src="../collection-images/photopaper-images/RC(waterproof) A6 270.png" alt="frame-two">
+          <h4>Rc(waterproof) A6</h4>
+          <hr class="frame-hr">
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1,800</p>
+          </a>
+          </div>
+        </div>
+      </div>
+</div>
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <hr style="margin-top: 10em;">
+    <i class="fa-regular fa-copyright"></i>
+    <p>2025 Soleflex Stores. All Rights Reserved. Built by Derrick.G.Maina. <br>TEL: 0798702143</p>
+  </div>
+
+  <!-- ===== SLIDER SCRIPT ===== -->
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+    let index = 0;
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[n].classList.add("active");
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+
+    const toggleBtn = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".first-container");
+        toggleBtn.addEventListener("click", ()=> {
+            navLinks.classList.toggle("active");
+            toggleBtn.textContent = navLinks.classList.contains("active")?"x" : "=";
+        });
+
+
+  </script>
+  <script>
+  const COLOR_CODE_PREFIX = "Embossed Paper 230gsm";
+</script>
+  <script src="../../prototype.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // --- Helpers ---
+  const qs = sel => document.querySelector(sel);
+  const qsa = sel => Array.from(document.querySelectorAll(sel));
+
+  // --- Elements ---
+  const colorCheckboxes = qsa(".frame-color");
+  const colorDisplay = qs("#frameColor");
+  const colorCodeDisplay = qs("#Color-code");
+
+  // --- Colour Code Mapping ---
+ 
+
+  const colorCodes = {
+    Black: ".5",
+    White: ".1",
+    Brown: ".2",
+    Silver: ".3",
+    Gold: ".4",
+    Blue: ".6"
+  };
+ 
+  // --- Default Colour ---
+  const defaultColor = "Black";
+  const defaultCheckbox = colorCheckboxes.find(
+    cb => cb.value.toLowerCase() === defaultColor.toLowerCase()
+  );
+
+  if (defaultCheckbox) defaultCheckbox.checked = true;
+
+  if (colorDisplay) {
+    colorDisplay.innerHTML = `<b>Colour:</b> ${defaultColor}`;
+  }
+
+  if (colorCodeDisplay) {
+    colorCodeDisplay.innerHTML =
+      `<b>Colour-code:</b> ${COLOR_CODE_PREFIX}${colorCodes[defaultColor]}`;
+  }
+
+  const frameTypeDisplay = qs("#frameType");
+
+// Set the frame type to the color code prefix + default (or any custom value)
+if (frameTypeDisplay) {
+  frameTypeDisplay.textContent = COLOR_CODE_PREFIX;
+}
+
+// Optional: if you want it to update with color selection
+colorCheckboxes.forEach(cb => {
+  cb.addEventListener("change", function () {
+    if (!this.checked) return;
+
+    const color = this.value;
+    const code = colorCodes[color] || "";
+
+    // Update frame type too
+    if (frameTypeDisplay) {
+      frameTypeDisplay.textContent = COLOR_CODE_PREFIX + code;
+    }
+  });
+});
+
+
+  // --- Handle Colour Change ---
+  colorCheckboxes.forEach(cb => {
+    cb.addEventListener("change", function () {
+      // Allow only one colour checked
+      colorCheckboxes.forEach(other => {
+        if (other !== this) other.checked = false;
+      });
+
+      if (!this.checked) return;
+
+      const color = this.value;
+      const code = colorCodes[color] || "";
+
+      if (colorDisplay) {
+        colorDisplay.innerHTML = `<b>Colour:</b> ${color}`;
+      }
+
+      if (colorCodeDisplay) {
+        colorCodeDisplay.innerHTML =
+          `<b>Colour-code:</b> ${COLOR_CODE_PREFIX}${code}`;
+      }
+    });
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const whatsappBtn = document.getElementById("BuyNow");
+  if (!whatsappBtn) return;
+
+  whatsappBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    /* ===== FRAME TYPE ===== */
+    const frameType =
+      document.getElementById("frameType")?.textContent.trim()
+      || "Not specified";
+
+    /* ===== FRAME SIZE (DEFAULT: A3 ONLY) ===== */
+    const sizeEl = document.querySelector('.frame-size[checked]');
+    if (!sizeEl) {
+      alert("Default frame size (A3) not found.");
+      return;
+    }
+
+    const frameSize = sizeEl.value;                 // A3
+    const unitPrice = Number(sizeEl.dataset.price); // 320
+
+    /* ===== QUANTITY RESOLUTION ===== */
+    let quantity = 1;
+
+    // 🥇 Cart quantity (highest priority)
+    const cartQtyEl = document.querySelector(".cart-item-qty");
+    if (cartQtyEl && !isNaN(cartQtyEl.textContent)) {
+      quantity = Number(cartQtyEl.textContent);
+    }
+
+    // 🥈 Filter quantity (only if cart not used)
+    if (quantity === 1) {
+      const filterQtyEl = document.querySelector(
+        'input[data-group="quantities"]:checked'
+      );
+      if (filterQtyEl) {
+        const match = filterQtyEl.value.match(/\d+/);
+        if (match) quantity = Number(match[0]);
+      }
+    }
+
+    /* ===== TOTAL PRICE ===== */
+    const totalPrice = unitPrice * quantity;
+
+    /* ===== WHATSAPP MESSAGE ===== */
+    const message = `
+Hello Soleflex 👋
+
+I would like to order:
+
+🖼️ Frame Type: ${frameType}
+📐 Frame Size: ${frameSize}
+📦 Quantity: ${quantity}
+💰 Total Price: Ksh ${totalPrice}
+
+Please confirm availability and delivery details.
+    `.trim();
+
+    const phone = "254791488487";
+    const whatsappURL =
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+  });
+});
+</script>
+
+
+</body>
+</html>

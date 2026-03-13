@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../collections.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+
+    <div class="navbar">
+  <div class="logo">
+    <a href="#">AcraFrames</a>
+  </div>
+
+  <div class="navigation">
+    <div class="search-hamburger">
+      <div class="searchBar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for frame numbers (e.g., 1019)..."
+          list="Listproducts"
+        />
+        <datalist id="Listproducts"></datalist>
+        <button id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const datalist = document.getElementById("Listproducts");
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
+
+  let products = [];
+
+  // 1. Load products from JSON
+  fetch("products.json")
+    .then(res => res.json())
+    .then(data => {
+      products = data;
+
+      // 2. Populate datalist
+      products.forEach(product => {
+        const option = document.createElement("option");
+        option.value = product.name;
+        datalist.appendChild(option);
+      });
+    })
+    .catch(err => {
+      console.error("Failed to load products:", err);
+    });
+
+  // 3. Search function
+  function handleSearch() {
+    const inputValue = searchInput.value.trim().toLowerCase();
+    const found = products.find(
+      p => p.name.toLowerCase() === inputValue
+    );
+
+    if (found) {
+      window.location.href = found.url;
+    } else {
+      alert("Frame not found. Please select a number from the list.");
+    }
+  }
+
+  // 4. Events
+  searchBtn.addEventListener("click", handleSearch);
+  searchInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") handleSearch();
+  });
+</script>
+</div>
+<div class="header">
+    <h5>Our Collections</h5>
+    <p class="header-title">Explore Luxury Frames</p>
+    <hr>
+    <p>Discore handcrafted frames from the worlds finest artisans</p>
+</div>
+<div class="buttons">
+     <a href="/collections.html"><p>All Frames</p></a>
+    <a href="glassframes.html"><p>Glass Frame Albums</p></a>
+    <a href="photopaper.html"><p>Photo Papers</p></a>
+</div>
+
+    <div class="frame">
+        <div class="box">
+              <a href="photopaper/Embossedpaper-230gsm.html"><div class="frame-container">
+          <img src="collection-images/photopaper-images/Embossed paper 230gsm.png" alt="item3">
+          <h4>Embossedpaper 230gsm</h4>
+          <hr class="frame-hr">
+          <p> refined design: <b>Photopaper</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1800</p>
+          </div>
+        </div>
+        </a>
+        </div>
+        <div class="box">
+              <a href="photopaper/mattepaper-115gsm.html"><div class="frame-container">
+          <img src="collection-images/photopaper-images/Matte paper 115gsm refined.png" alt="item-2" style="border-radius: 10%;">
+          <h4>Matte paper 115gsm</h4>
+          <hr class="frame-hr">
+          <p>refined design: <b>Mattepaper</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1800</p>
+          </div>
+        </div>
+        </a>
+        </div>
+        <div class="box">
+              <a href="photopaper/photopaper-260gsm.html"><div class="frame-container">
+          <img src="collection-images/photopaper-images/photo paperA4 230gsm.png" alt="item-4" style="object-fit: cover;">
+          <h4>Photopaper 260 gsm</h4>
+          <hr class="frame-hr">
+          <p>refined design: <b>PhotoPaper</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1800</p>
+          </div>
+        </div>
+        </a>
+        </div>
+        <div class="box">
+              <a href= "photopaper/Rc(waterproof)A6-270.html"><div class="frame-container">
+          <img src="collection-images/photopaper-images/RC(waterproof) A6 270.png" alt="item3">
+          <h4>RC (Waterproof) A6 </h4>
+          <hr class="frame-hr">
+          <p>refined design: <b>Waterproof RC</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1800</p>
+          </div>
+          </div>
+          </a>
+        </div>
+        <div class="box">
+              <a href="photopaper/stickerpaper-135gsm.html"><div class="frame-container">
+          <img src="collection-images/photopaper-images/skicker paper 135gsm.png" alt="item3">
+          <h4>Sticker paper 135gsm </h4>
+          <hr class="frame-hr">
+          <p>refined design: <b>Stickerpaper</b></p>
+          <div class="price-cart">
+          <p class="price">Ksh 350 - 1800</p>
+          </div>
+        </div>
+        </a>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

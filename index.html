@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potraits</title>
+    <link rel="stylesheet" href="index.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=sans+serif+One&family=Life+Savers:wght@400;700;800&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <div class="navbar">
+  <div class="logo"><a href="#"><img src="https://res.cloudinary.com/dan4rv40f/image/upload/v1773320851/Logo_fesi86.png" alt="logo"></a></div>
+  
+  
+
+  <div class="navigation" id="mainNavigation">
+    <ul>
+      <li><a style="color: white;" href="collections.html">collections</a></li>
+      <li>About us</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-one">
+  <div class="mygrid">
+    <div class="wrapper" id="slider-one">
+      
+      <div class="slide-img">
+        <img src=https://res.cloudinary.com/dan4rv40f/image/upload/v1772435440/hero-1_evxv2m.jpg alt="Slide 1" loading="eager"/>
+        <div class="text-container"> 
+          <h3>Every Legacy Needs a Frame</h3>
+          <p>Because your story deserves to be seen and remembered</p>
+          <a href="collections.html"><div class="slider-btn">View all collections &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></div></a>
+        </div>
+      </div>
+      
+      <div class="slide-img">
+        <img src=https://res.cloudinary.com/dan4rv40f/image/upload/v1772435441/hero-2_tjyfe3.jpg alt="Slide 2" loading="eager" />
+        <div class="text-container">
+          <h3>Turn Moments into Masterpieces</h3>
+          <p>Frame what matters most and make it last forever</p>
+          <a href="collections.html"><div class="slider-btn">View all collections &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></div></a>
+        </div>
+      </div>
+      
+      <div class="slide-img" >
+        <img src=https://res.cloudinary.com/dan4rv40f/image/upload/v1772435441/hero-3_pmqcqe.jpg alt="Slide 3" loading="eager"/>
+        <div class="text-container">
+          <h3>Your Moments. Your Legacy</h3>
+          <p>Let your walls tell your story - one frame at a time</p>
+          <a href="collections.html"><div class="slider-btn">View all collections &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></div></a>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="dots" id="dots-container"></div>
+  </div>
+</div>
+<script>
+function startSlideshow(sliderId, totalSlides, intervalTime) {
+  const slider = document.getElementById(sliderId);
+  const dotsContainer = document.getElementById("dots-container");
+
+  let index = 0;
+
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      index = i;
+      updateSlide();
+      resetInterval();
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  const dots = document.querySelectorAll(".dot");
+
+  function updateSlide() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % totalSlides;
+    updateSlide();
+  }
+
+  let slideInterval = setInterval(nextSlide, intervalTime);
+
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
+}
+
+// Start the slideshow
+startSlideshow("slider-one", 3, 8000);
+</script>
+
+
+    <div class="page-two">
+      <h3>Our Main Collections</h3>
+      <hr>
+      <div class="collections">
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435419/pictureframe3119.5_eofmhp.png alt="item-1" loading="eager">
+          <h4>3119</h4>
+          <p>Frame picture refined design: <b>3119.5</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435390/pictureframe3117.2_uj05bp.png alt="item-2" loading="eager">
+          <h4>3177</h4>
+          <p>Frame picture refined design: <b>3177.2</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435437/pictureframes3102.1_ojfnir.png alt="item3" loading="eager">
+          <h4>3102</h4>
+          <p>Frame picture refined design: <b>3102.1</b></p>
+        </div>
+        <div class="col-img"><img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435420/pictureframe3136.3_oxlloe.png" alt="item3" loading="eager">
+          <h4>3136</h4>
+          <p>Frame picture refined design: <b>3136.3</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435397/pictureframe3070.1_uai5tj.png alt="item-4" loading="lazy">
+          <h4>3070</h4>
+          <p>Frame picture refined design: <b>3070.1</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435373/pictureframe1022.6_xtoors.png alt="item-4" loading="lazy">
+          <h4>1022</h4>
+          <p>Frame picture refined design: <b>1022.6</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435399/pictureframe3085.1_xzt3yo.png alt="item-4" loading="lazy">
+          <h4>3085</h4>
+          <p>Frame picture refined design: <b>3085.1</b></p>
+        </div>
+        <div class="col-img"><img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435414/pictureframe3185.5_fhfrtr.png alt="item-4" loading="lazy">
+          <h4>3185</h4>
+          <p>Frame picture refined design: <b>3185.5</b></p>
+        </div>
+      </div>
+    </div>
+
+  <div class="about">
+  <div class="about-overlay"></div>
+  <div class="about-paragraph">
+    <h3>Why AccraFrames</h3>
+    <hr style="width: 50%; border: solid #ffd700; margin-bottom: 5px;">
+    <p style="margin-bottom: 10px;">At AccraFrames, we believe every memory deserves a masterpiece. <br>
+      Our mission is to turn your favorite moments into timeless wall art — beautifully framed, thoughtfully crafted, and made to inspire. <br>
+    </p>
+    <p>
+      From sleek modern designs to warm classic finishes, every frame we create is a blend of artistry and precision. <br>Whether it's a cherished photograph, an art print, or a captured milestone, we make sure it's showcased in a way that speaks to your <br> style and story.
+
+      Because at AccraFrames, your walls tell your story — and we're here to help you frame it beautifully.
+    </p>
+  </div>
+</div>
+
+    <h3 style="text-align: center;margin-top: 2em;margin-bottom: 2px; font-size: 25px;">Our Top Sellers</h3>
+    <hr style="margin-bottom: 2em;">
+    <div class="top-picks">
+         <div class="frame">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435447/pictureframes3198.2_m7iqrj.png alt="frame-one" loading="lazy">
+          <h4>3198</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3198.2</b></p>
+           <a href="frames/3198.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+          </a>
+        </div>
+         <div class="frame">
+          <a href=""></a>
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435397/pictureframe3070.1_uai5tj.png alt="frame-two" loading="lazy">
+          <h4>3070</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3070.1</b></p>
+          <a href="frames/3070.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435402/pictureframe3127.2_pvri11.png alt="frame-three" loading="lazy">
+          <h4>3127</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3127.2</b></p>
+          <a href="frames/3127.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435421/pictureframe3135.1_mcnpav.png alt="frame-four" loading="lazy">
+          <h4>3135</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3135.1</b></p>
+          <a href="frames/3135.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435414/pictureframe3185.5_fhfrtr.png alt="frame-one" loading="lazy">
+          <h4>3185</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3185.5</b></p>
+          <a href="frames/3185.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435304/3093.2_wdiul6.png" alt="frame-two" loading="lazy">
+          <h4>3093</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3093.2</b></p>
+          <a href="frames/3093.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src=https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435421/pictureframe3197.2_tranxw.png alt="frame-three" loading="lazy">
+          <h4>3197</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3197.2</b></p>
+          <a href="frames/3197.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+         <div class="frame">
+          <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772435437/pictureframes3102.1_ojfnir.png"alt="frame-four" loading="lazy">
+          <h4>3102</h4>
+          <hr class="frame-hr">
+          <p>Frame picture refined design: <b>3102.1</b></p>
+          <a href="frames/3102.html"><P class="frame-btn">Explore Now  <i class="fa-solid fa-arrow-right"></i></P></a>
+        </div>
+    </div>
+    <div class="page-four">
+      <h3>Begin your Legacy</h3>
+      <hr>
+      <p>Every masterpiece deserves a Frame that matches its beauty. Let us help you find Yours.</p>
+      <a href="collections.html"><p class="page-four-btn">View all collections  &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></p></a>
+    </div>
+  <div class="custom-section">
+  <h4>Custom Printing</h4>
+  <hr style="margin-bottom: 2em;">
+  <p>Get your favourite photos printed and placed in exquisite frames</p>
+
+  <div class="custom-img">
+
+    <!-- Card 1 -->
+    <div class="custom-card">
+      <div class="image-wrapper">
+        <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772864082/pexels-polina-kovaleva-8101555_nvce8b.jpg" alt="Custom Canvas Prints" loading="lazy">
+
+        <div class="custom-overlay">
+          <p>Turn your favorite photos into stunning, high-detail custom canvas prints that bring your memories to life.</p>
+        </div>
+      </div>
+
+      <h5>Custom Canvas Prints</h5>
+      <hr style="margin-top: 1%;">
+    </div>
+
+    <!-- Card 2 -->
+    <div class="custom-card">
+      <div class="image-wrapper">
+        <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772725458/pexels-tirachard-kumtanom-112571-587441_avifxm.jpg" alt="Custom Paper Prints" loading="lazy">
+
+        <div class="custom-overlay">
+          <p>Print your cherished photos and place them beautifully in the frame of your choice.</p>
+        </div>
+      </div>
+
+      <h5>Custom Paper Prints</h5>
+      <hr style="margin-top: 1%;">
+    </div>
+
+    <!-- Card 3 -->
+    <div class="custom-card">
+      <div class="image-wrapper">
+        <img src="https://res.cloudinary.com/dan4rv40f/image/upload/w_400,q_auto,f_auto/v1772864088/pexels-kristyna-vyvolej-to-348549788-15636411_ep9ndl.jpg" alt="Photo Albums" loading="lazy">
+
+        <div class="custom-overlay">
+          <p>Don't let your memories stay forgotten—preserve them in our beautifully crafted, irresistible photo albums.</p>
+        </div>
+      </div>
+
+      <h5>Photo Albums</h5>
+      <hr style="margin-top: 1%;">
+    </div>
+
+  </div>
+</div>
+    <div class="reviews">
+      <div class="review-one">
+        <i class="fa-solid fa-globe"></i>
+        <h4>Global Sourcing</h4>
+        <hr>
+        <p>From Italian gold - leafing to Japanese precision, we source from the world's masters</p>
+      </div>
+      <div class="review-two">
+        <i class="fa-solid fa-ribbon"></i>
+        <h4>Museum Quality</h4>
+        <hr>
+        <p>Every price meets, archivial standards for preserving as longetivity</p>
+      </div>
+      <div class="review-three">
+        <i class="fa-solid fa-shield"></i>
+        <h4>Uv Protection</h4>
+        <hr>
+        <p>Anti - fade materials. Ensure your memories stay vibrant for decades</p>
+    </div>
+    <div class="review-four">
+      <i class="fa-solid fa-heart"></i>
+       <h4>Bespoke Care</h4>
+       <hr>
+       <p>Personalised consutations to find the perfect frame for your vision</p>
+    </div>
+    </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll("img");
+
+  images.forEach(img => {
+    img.setAttribute("loading", "lazy");
+  });
+});
+</script>
+    <div class="footer">
+      <hr style="margin-top: 10em;">
+        <i class="fa-regular fa-copyright"></i><p>2025 Soleflex Stores. All Rights Reserved. Built by Derrick.G.Maina. <br>
+        TEL: 0798702143</p>
+    </div>
+</body>
+</html>
+
+<!--bobby Nsenga-->
